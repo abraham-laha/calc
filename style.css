@@ -1,0 +1,31 @@
+.borderCalc {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 10px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.display {
+    color: white;
+    background-color: grey;
+    text-align: right;
+    border: 1px solid green;
+
+}
+button {
+    width: 30px;
+    /*height: 30px;*/
+}
+
+.lower{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;;
+}
