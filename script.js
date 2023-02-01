@@ -35,3 +35,17 @@ function operate(a, oper, b){
     }
 }
 
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector('.display');
+buttons.forEach(button => button.addEventListener('click',(event) => {
+    decide(button);
+
+}));
+
+
+
+function decide(but){
+    let classes = but.getAttribute('class').split(' ');
+    display.textContent+=`${but.textContent}`;
+    console.log(but);
+}
