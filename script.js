@@ -38,6 +38,7 @@ function operate(a, oper, b){
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector('.display');
 let initial_flac = true;
+let flac_plusMinus = false;
 buttons.forEach(button => button.addEventListener('click',(event) => {
     decide(button);
 
@@ -48,9 +49,13 @@ buttons.forEach(button => button.addEventListener('click',(event) => {
 function decide(but){
     let classes = but.getAttribute('class').split(' ');
     if(but.getAttribute('class') == 'clear'){
+        flac_plusMinus = false;
+        
         display.textContent = "0";
         initial_flac = true;
     }else if(but.getAttribute('class').includes("num")){
+        flac_plusMinus = false;
+
         if(initial_flac){
             display.textContent =`${but.textContent.trim()}`;
         }else{
@@ -58,13 +63,42 @@ function decide(but){
         }
         initial_flac = false;
     }else if(but.getAttribute('class').includes("operator")){
+        flac_plusMinus = false;
+
         display.textContent+=`${but.textContent}`;
         initial_flac = false;
+    }else if(but.getAttribute('class').includes("parent")){
+        flac_plusMinus = false;
+
+        display.textContent+=`${but.textContent.trim()}`;
+        initial_flac = false;
+    }else if(but.getAttribute('class').includes("point")){
+        flac_plusMinus = false;
+
+        display.textContent+=`${but.textContent.trim()}`;
+        initial_flac = false;
+    }else if(but.getAttribute('class').includes("sign")){
+        if(!flac_plusMinus){
+            if(display.textContent.charAt(display.textContent.length - 1) == "+"){
+                display.textContent=display.textContent.slice(0,-1) +`-`;
+            }else{
+                display.textContent+= `-`;
+            }
+            flac_plusMinus = true;
+        }else{
+        display.textContent= display.textContent.slice(0,-1) + '+';
+        flac_plusMinus = false;
+        }
+        initial_flac = false;
+
+    }else if(but.getAttribute('class').includes("equals")){
+        display.textContent="532";
+        initial_flac=true;
     }
     else{
 
-    display.textContent+=`${but.textContent}`;
-    initial_flac = false;
+    display.textContent+=`ERROR`;
+
     }
     console.log(but);
 }
