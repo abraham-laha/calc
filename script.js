@@ -37,6 +37,7 @@ function operate(a, oper, b){
 
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector('.display');
+let initial_flac = true;
 buttons.forEach(button => button.addEventListener('click',(event) => {
     decide(button);
 
@@ -46,6 +47,24 @@ buttons.forEach(button => button.addEventListener('click',(event) => {
 
 function decide(but){
     let classes = but.getAttribute('class').split(' ');
+    if(but.getAttribute('class') == 'clear'){
+        display.textContent = "0";
+        initial_flac = true;
+    }else if(but.getAttribute('class').includes("num")){
+        if(initial_flac){
+            display.textContent =`${but.textContent.trim()}`;
+        }else{
+            display.textContent +=`${but.textContent.trim()}`;
+        }
+        initial_flac = false;
+    }else if(but.getAttribute('class').includes("operator")){
+        display.textContent+=`${but.textContent}`;
+        initial_flac = false;
+    }
+    else{
+
     display.textContent+=`${but.textContent}`;
+    initial_flac = false;
+    }
     console.log(but);
 }
