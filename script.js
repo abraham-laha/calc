@@ -46,6 +46,29 @@ buttons.forEach(button => button.addEventListener('click',(event) => {
 
 
 
+function solve(expr){
+    expr = expr.replaceAll(' ', '');
+    expr = expr.replaceAll('\n', '');
+    let par_open = 0, par_closed = 0;
+    for(let i = 0; i < expr.length; i++){
+        if(expr.charAt(i)=='('){
+            par_open ++;
+        }
+        if(expr.charAt(i)==')'){
+            par_closed ++;
+        }
+        if(!["1","2","3","4","5", "6", "7", "8", "9","0","+","-","/","/","x","(",")","."].includes(expr.charAt(i))){
+            return "Invalid Syybol";
+        }
+        
+    }
+    if(par_closed!=par_open) return "Syntax ERROR"
+    console.log(expr);
+
+}
+
+
+
 function decide(but){
     let classes = but.getAttribute('class').split(' ');
     if(but.getAttribute('class') == 'clear'){
@@ -92,7 +115,8 @@ function decide(but){
         initial_flac = false;
 
     }else if(but.getAttribute('class').includes("equals")){
-        display.textContent="532";
+        solve(display.textContent);
+        display.textContent=solve(display.textContent);;
         initial_flac=true;
     }
     else{
