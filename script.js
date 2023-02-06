@@ -50,19 +50,29 @@ function solve(expr){
     expr = expr.replaceAll(' ', '');
     expr = expr.replaceAll('\n', '');
     let par_open = 0, par_closed = 0;
+
+    //Check for Wrong Input 
     for(let i = 0; i < expr.length; i++){
         if(expr.charAt(i)=='('){
             par_open ++;
         }
         if(expr.charAt(i)==')'){
             par_closed ++;
+            if(par_open<par_closed) return "Syntax ERROR";
         }
         if(!["1","2","3","4","5", "6", "7", "8", "9","0","+","-","/","/","x","(",")","."].includes(expr.charAt(i))){
             return "Invalid Syybol";
         }
+        if(i>=1){
+            if(['/', 'x','+'].includes(expr.charAt(i)) && ['-','+','/','x','('].includes(expr.charAt(i-1))){
+                 return "Syntax ERROR";
+            }
+            if(expr.charAt(i)=='.' && expr.charAt(i-1)=='.') return "Syntax ERROR";
+            if(expr.charAt(i)==')' && expr.charAt(i-1)=='(') return "Syntax ERROR";
+        }
         
     }
-    if(par_closed!=par_open) return "Syntax ERROR"
+    if(par_closed!=par_open) return "Syntax ERROR";
     console.log(expr);
 
 }
