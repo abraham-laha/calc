@@ -43,8 +43,25 @@ buttons.forEach(button => button.addEventListener('click',(event) => {
     decide(button);
 
 }));
+/**
+function addparent(expr){
+    let newExpr = "(";
+    let IndexOperator = [];
+    for(let i = 0; i < expr.length; i++){
+        
+        if(['-', '+'].includes(expr.charAt(i))){
+            newExpr+=')';
+            newExpr+=expr.charAt(i);
+            if(i < expr.length -1) newExpr+='(';
+        }else{
+            newExpr+=expr.charAt(i);
+        }
 
+    }
+    newExpr+=')';
+    console.log(newExpr);
 
+}*/
 
 function solve(expr){
     expr = expr.replaceAll(' ', '');
@@ -73,6 +90,8 @@ function solve(expr){
         
     }
     if(par_closed!=par_open) return "Syntax ERROR";
+    //let exprChanged = addParent(expr);
+
     console.log(expr);
 
 }
