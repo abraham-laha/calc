@@ -74,6 +74,7 @@ function addParentMinus(expr){
                 }
             }
             newExpr+=')';
+            newExpr+=expr.charAt(j);
             i = j;
         }else{
             if(i<expr.length){
