@@ -81,7 +81,7 @@ function solve(expr){
             return "Invalid Syybol";
         }
         if(i>=1){
-            if(['/', 'x','+'].includes(expr.charAt(i)) && ['-','+','/','x','('].includes(expr.charAt(i-1))){
+            if(['/', 'x','+','.'].includes(expr.charAt(i)) && ['-','+','/','x','(','.'].includes(expr.charAt(i-1))){
                  return "Syntax ERROR";
             }
             if(expr.charAt(i)=='.' && expr.charAt(i-1)=='.') return "Syntax ERROR";
@@ -103,7 +103,7 @@ function solve(expr){
     }
     if(par_closed!=par_open) return "Syntax ERROR";
     //let exprChanged = addParent(expr);
-
+    if (['-','+','/','x','(','.'].includes(expr.charAt(expr.length - 1))) return "Syntax Error";
     console.log(expr);
 
 }
