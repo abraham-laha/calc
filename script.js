@@ -67,7 +67,7 @@ function solve(expr){
     expr = expr.replaceAll(' ', '');
     expr = expr.replaceAll('\n', '');
     let par_open = 0, par_closed = 0;
-
+    let flac_point = false;
     //Check for Wrong Input 
     for(let i = 0; i < expr.length; i++){
         if(expr.charAt(i)=='('){
@@ -87,6 +87,18 @@ function solve(expr){
             if(expr.charAt(i)=='.' && expr.charAt(i-1)=='.') return "Syntax ERROR";
             if(expr.charAt(i)==')' && expr.charAt(i-1)=='(') return "Syntax ERROR";
         }
+        if(["1","2","3","4","5", "6", "7", "8", "9","0",'.'].includes(expr.charAt(i)) && flac_point){
+            if(expr.charAt(i)=='.'){
+                return "Syntax ERROR"; 
+            } 
+
+        }else{
+            flac_point = false;
+        }
+        if(expr.charAt(i)=='.' && !flac_point){
+            flac_point = true;
+        }
+
         
     }
     if(par_closed!=par_open) return "Syntax ERROR";
