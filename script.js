@@ -57,7 +57,6 @@ function addParentMinus(expr){
                 newExpr+= expr.charAt(j);
                 j++;
                 while(parClos!=parOp){
-                    newExpr+= expr.charAt(j);
                     if(expr.charAt(j)=='('){
                         parOp++;
                     }
@@ -66,10 +65,11 @@ function addParentMinus(expr){
                     }
                     j++;
                 }
+                newExpr += addParentMinus(expr.slice(i+2,j-1));
+                newExpr += ')';
             }else{
                 while(j < expr.length && ["1","2","3","4","5", "6", "7", "8", "9","0",'.'].includes(expr.charAt(j))){
                     newExpr += expr.charAt(j);
-                    console.log(1);
                     j++;
                 }
             }
@@ -168,9 +168,7 @@ function solve(expr){
     //let exprChanged = addParent(expr);
     if (['-','+','/','x','(','.'].includes(expr.charAt(expr.length - 1))) return "Syntax Error";
 
-    console.log(expr);
     expr= makeMinusPlus(expr);
-    console.log(expr);
     expr = addParentMinus(expr);
     console.log(expr);
 
