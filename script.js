@@ -199,8 +199,11 @@ function decide(but){
         initial_flac = false;
     }else if(but.getAttribute('class').includes("parent")){
         flac_plusMinus = false;
-
-        display.textContent+=`${but.textContent.trim()}`;
+        if(initial_flac){
+            display.textContent =`${but.textContent.trim()}`;
+        }else{
+            display.textContent+=`${but.textContent.trim()}`;
+        }
         initial_flac = false;
     }else if(but.getAttribute('class').includes("point")){
         flac_plusMinus = false;
@@ -208,16 +211,21 @@ function decide(but){
         display.textContent+=`${but.textContent.trim()}`;
         initial_flac = false;
     }else if(but.getAttribute('class').includes("sign")){
-        if(!flac_plusMinus){
-            if(display.textContent.charAt(display.textContent.length - 1) == "+"){
-                display.textContent=display.textContent.slice(0,-1) +`-`;
-            }else{
-                display.textContent+= `-`;
-            }
+        if(initial_flac){
+            display.textContent ='-';
             flac_plusMinus = true;
         }else{
-        display.textContent= display.textContent.slice(0,-1) + '+';
-        flac_plusMinus = false;
+            if(!flac_plusMinus){
+                if(display.textContent.charAt(display.textContent.length - 1) == "+"){
+                    display.textContent=display.textContent.slice(0,-1) +`-`;
+                }else{
+                    display.textContent+= `-`;
+                }
+                flac_plusMinus = true;
+            }else{
+            display.textContent= display.textContent.slice(0,-1) + '+';
+            flac_plusMinus = false;
+            }
         }
         initial_flac = false;
 
