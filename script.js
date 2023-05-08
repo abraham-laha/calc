@@ -44,6 +44,18 @@ buttons.forEach(button => button.addEventListener('click',(event) => {
 
 }));
 
+function parantMultipliyer(expr){
+    let newExpr = '';
+    for(let i = 0; i < expr.length; i++){
+        newExpr+= expr.charAt(i);
+        if(i < (expr.length - 1 )&& expr.charAt(i)==')' && (expr.charAt(i+1)=='(' || ["1","2","3","4","5", "6", "7", "8", "9","0"].includes(expr.charAt(i+1)))){
+            newExpr += 'x';
+        }else if(i < (expr.length - 1 )&& ["1","2","3","4","5", "6", "7", "8", "9","0"].includes(expr.charAt(i)) && expr.charAt(i+1)=='('){
+            newExpr += 'x';
+        }
+    }
+    return newExpr;
+}
 
 function addParentMinus(expr){
     let newExpr = '';
@@ -107,7 +119,7 @@ function makeMinusPlus(expr){
             newExpr+=expr.charAt(i);
             if(expr.charAt(i)=='-'){
                 minusInfolge++;
-            }else{
+            }else{newExpr
                 minusInfolge = 0;
             }
         }
@@ -170,6 +182,7 @@ function solve(expr){
 
     expr= makeMinusPlus(expr);
     expr = addParentMinus(expr);
+    expr = parantMultipliyer(expr);
     console.log(expr);
 
 }
